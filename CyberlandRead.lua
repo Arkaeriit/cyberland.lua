@@ -63,8 +63,8 @@ read.showLast = function(board,n)
     end
 end
 
-function showThread(board, n, thread)
-    local b = reverseTable(getThreadBasic(board, thread))
+read.showThread = function(board, n, thread)
+    local b = getThreadBasic(board, thread)
     local max = n; if #b < n then max = #b end;
     for i=1,max do
         displayMessage(b[#b-i+1])
@@ -113,6 +113,12 @@ read.showThreadTree = function(board, n, thread)
     boardTab = getBoard(board)
     local lst = {}
     lst[1] = fetchId(boardTab, thread)
+    if tonumber(thread) == 0 then --We want a catalog
+        lst[1] = {content = "catalog", id = "0", replyTo = "null"}
+    end
+    if thread == "null" then --We want a catalog
+        lst[1] = {content = "catalog", id = "null", replyTo = "null"}
+    end
     if not lst[1] then
         io.stderr:write("Error : thread number ",tostring(thread)," doesn't exists.\n")
         return

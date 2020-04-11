@@ -17,8 +17,16 @@ elseif arg[1] and arg[1] == "post" then
     else
         io.stderr:write("Usage : cyberland post [board] [message] [replyTo]\n")
     end
-else   
+elseif arg[1] and arg[1] == "catalog" then
+    if #arg == 3 then
+        read.showThread(arg[2], tonumber(arg[3]), "0")
+        read.showThread(arg[2], tonumber(arg[3]), "null")
+    else
+        io.stderr:write("Usage : cyberland catalog [board] [number of posts]\n")
+    end
+else  
         io.stderr:write("Usage : cyberland read [board] [number of posts] [thread]\n")
         io.stderr:write(" or   : cyberland post [board] [message] [replyTo]\n")
+        io.stderr:write("or    : cyberland catalog [board] [number of posts]\n")
 end
 
