@@ -1,12 +1,23 @@
 --This file return two functions, read.showLast and read.showThreadTree used to read cyberland.club
 
---posts whose content is in this list will not be showed
---It such a shame that some anon use theur anonymity to be so rude
-local filter = {"niggers"}
-
 local read = {}
 
 local json = require('json')
+
+--open the file and each line of this file is a post whose content will be filtered
+local filter = {}
+read.filter = function(filename)
+    local f = io.open(filename, "r")
+    filter = {}
+    if not f then return end
+    local str = f:read()
+    filter[#filter+1] = str
+    while str do
+        str = f:read()
+        filter[#filter+1] = str
+    end
+    f:close()
+end
 
 function curl(board, thread, num)
     if not thread then
@@ -166,9 +177,9 @@ read.showThreadTree = function(board, n, thread)
     end
     threadTree(boardTab, lst)
     local max = n; if #lst < n then max = #lst end;
-    local i = 0
-    while i <= max and i <= #b do
-        if not displayMessage(b[#b-i+1]) then
+    local i = 1
+    while i <= max and i <= #boardTab do
+        if not displayMessage(boardTab[#boardTab-i+1]) then
             max = max+1
         else
             io.stdout:write('\n')
