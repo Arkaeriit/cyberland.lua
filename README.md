@@ -2,6 +2,8 @@
 
 My cyberland.club client.
 
+![Alt text](https://i.imgur.com/aoqvUbF.png "Reading a thread")
+
 ## User manual
 
 To read the last 10 messages from the board /t/ do
