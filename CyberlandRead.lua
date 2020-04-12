@@ -30,10 +30,25 @@ function reverseTable(tab)
     return ret
 end
 
+-- Bubble sort the tab by the ID of the field of tab
+function sortTable(tab)
+    local tmp
+    for i=1,#tab do
+        for j=1,#tab-1 do
+            if tonumber(tab[j].id) > tonumber(tab[j+1].id) then
+                tmp = tab[j+1]
+                tab[j+1] = tab[j]
+                tab[j] = tmp
+            end
+        end
+    end
+    return tab
+end
+
 function getBoard(board)
     local n = getNboard(board)
     local str = curl(board, nil, n)
-    return reverseTable(json.decode(str))
+    return sortTable(json.decode(str))
 end
 
 function getThreadBasic(board, thread)
@@ -47,6 +62,9 @@ function displayMessage(entry)
         entry.prefix = ''
     end
     local str = entry.prefix.."ID : "..entry.id.."\n"
+    if entry.time then
+        str = str..entry.prefix.."Time : "..entry.time..'\n'
+    end
     if tonumber(entry.replyTo) and tonumber(entry.replyTo) > 1 then
         str = str..entry.prefix.."reply to : "..entry.replyTo.."\n"
     end
