@@ -40,6 +40,10 @@ cyberland post o "Cute" 1730
 
 You should now have all the info you need to use this client.
 
+### Filters
+
+To filter the content of some spammers, you can choose to ignore some posts by putting their content in the `filter` table, at the beginning of CyberlandRead.lua. A post will be filtered out only if it matches exactly one of the entries of the table.
+
 ### Instalation
 You need to have lua 5.3 installed to your machine.
 
