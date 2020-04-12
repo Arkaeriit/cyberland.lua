@@ -1,5 +1,9 @@
 --This file return two functions, read.showLast and read.showThreadTree used to read cyberland.club
 
+--posts whose content is in this list will not be showed
+--It such a shame that some anon use theur anonymity to be so rude
+local filter = {"niggers"}
+
 local read = {}
 
 local json = require('json')
@@ -10,7 +14,8 @@ function curl(board, thread, num)
     else
         thread = 'thread='..thread..'&'
     end
-    local c = io.popen('curl "https://cyberland.club/'..board..'/?'..thread..'num='..num..'" --silent',"r")
+    local command = 'curl "https://cyberland2.club/'..board..'/?'..thread..'num='..num..'" --silent'
+    local c = io.popen(command, "r")
     local char = c:read(1)
     while char and char ~= '[' do char = c:read(1) end --we drop the 'kek' from the start
     local ret = '['..c:read("a")
@@ -47,6 +52,7 @@ end
 
 function getBoard(board)
     local n = getNboard(board)
+    if n < 1000 then n = 1000 end
     local str = curl(board, nil, n)
     return sortTable(json.decode(str))
 end
@@ -57,7 +63,13 @@ function getThreadBasic(board, thread)
     return reverseTable(json.decode(str))
 end
 
+--Display a post in a pretty way. Return true if the post is displayed and false otherwise
 function displayMessage(entry)
+    for i=1,#filter do
+        if entry.content == filter[i] then
+            return false
+        end
+    end
     if not entry.prefix then -- a field custom to this reader
         entry.prefix = ''
     end
@@ -70,23 +82,34 @@ function displayMessage(entry)
     end
     str = str..entry.content.."\n"
     io.stdout:write(str)
+    return true
 end
 
 read.showLast = function(board,n)
     local b = getBoard(board)
     local max = n; if #b < n then max = #b end;
-    for i=1,max do
-        displayMessage(b[#b-i+1])
-        io.stdout:write('\n')
+    local i = 1
+    while i <= max and i <= #b do
+        if not displayMessage(b[#b-i+1]) then
+            max = max+1
+        else
+            io.stdout:write('\n')
+        end
+        i = i+1
     end
 end
 
 read.showThread = function(board, n, thread)
     local b = getThreadBasic(board, thread)
     local max = n; if #b < n then max = #b end;
-    for i=1,max do
-        displayMessage(b[#b-i+1])
-        io.stdout:write('\n')
+    local i = 1
+    while i <= max and i <= #b do
+        if not displayMessage(b[#b-i+1]) then
+            max = max+1
+        else
+            io.stdout:write('\n')
+        end
+        i = i+1
     end
 end
 
@@ -143,9 +166,14 @@ read.showThreadTree = function(board, n, thread)
     end
     threadTree(boardTab, lst)
     local max = n; if #lst < n then max = #lst end;
-    for i=1,max do
-        displayMessage(lst[i])
-        io.stdout:write('\n')
+    local i = 0
+    while i <= max and i <= #b do
+        if not displayMessage(b[#b-i+1]) then
+            max = max+1
+        else
+            io.stdout:write('\n')
+        end
+        i = i+1
     end
 end
 
