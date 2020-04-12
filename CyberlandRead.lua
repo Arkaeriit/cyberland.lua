@@ -176,10 +176,11 @@ read.showThreadTree = function(board, n, thread)
         return
     end
     threadTree(boardTab, lst)
+    lst = reverseTable(lst)
     local max = n; if #lst < n then max = #lst end;
     local i = 1
-    while i <= max and i <= #boardTab do
-        if not displayMessage(boardTab[#boardTab-i+1]) then
+    while i <= max and i <= #lst do
+        if not displayMessage(lst[#lst-i+1]) then
             max = max+1
         else
             io.stdout:write('\n')
