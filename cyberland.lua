@@ -2,7 +2,7 @@
 
 local read = require('CyberlandRead')
 local post = require('CyberlandPost')
-read.filter("/home/maxime/.config/cyberland.lua/filter")
+read.filter("~/.config/cyberland.lua/filter")
 
 if arg[1] and arg[1] == "read" then
     if #arg == 3 and tonumber(arg[3]) then
