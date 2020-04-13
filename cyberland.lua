@@ -25,9 +25,16 @@ elseif arg[1] and arg[1] == "catalog" then
     else
         io.stderr:write("Usage : cyberland catalog [board] [number of posts]\n")
     end
+elseif arg[1] and arg[1] == "OP" then
+    if #arg == 3 and tonumber(arg[3]) then
+        read.printOp(arg[2], arg[3])
+    else
+        io.stderr:write("Usage : cyberland op [board] [thread]\n")
+    end
 else  
         io.stderr:write("Usage : cyberland read [board] [number of posts] [thread]\n")
         io.stderr:write(" or   : cyberland post [board] [message] [replyTo]\n")
-        io.stderr:write("or    : cyberland catalog [board] [number of posts]\n")
+        io.stderr:write(" or   : cyberland catalog [board] [number of posts]\n")
+        io.stderr:write(" or   : cyberland op [board] [thread]\n")
 end
 

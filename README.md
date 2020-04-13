@@ -38,6 +38,12 @@ cyberland post o "Cute" 1730
 ```
 
 
+To know the OP from the thread 113 from the board /t/ do
+```
+cyberland OP t 113
+```
+
+
 You should now have all the info you need to use this client.
 
 ### Filters

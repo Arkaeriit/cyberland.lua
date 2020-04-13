@@ -189,5 +189,20 @@ read.showThreadTree = function(board, n, thread)
     end
 end
 
+--Return the OP of a thread, we assume that the thread given in argument is a number
+function getOp(boardTab, thread)
+    local entry = boardTab[thread]
+    if entry.replyTo == "0" or entry.replyTo == "null" then 
+        return thread
+    end
+    return getOp(boardTab, tonumber(entry.replyTo))
+end
+
+--display the original OP of a given thread
+read.printOp = function(board, thread)
+    local boardTab = getBoard(board)
+    io.stdout:write(getOp(boardTab, tonumber(thread)),'\n')
+end
+
 return read
 
