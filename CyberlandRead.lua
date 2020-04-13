@@ -191,7 +191,7 @@ end
 
 --Return the OP of a thread, we assume that the thread given in argument is a number
 function getOp(boardTab, thread)
-    local entry = boardTab[thread]
+    local entry = fetchId(boardTab, thread)
     if entry.replyTo == "0" or entry.replyTo == "null" then 
         return thread
     end
