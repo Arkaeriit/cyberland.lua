@@ -18,6 +18,12 @@ elseif arg[1] and arg[1] == "post" then
     else
         io.stderr:write("Usage : cyberland post [board] [message] [replyTo]\n")
     end
+elseif arg[1] and arg[1] == "picture" then
+    if #arg == 4 or #arg == 5 then
+        post.picture(arg[2], arg[3], arg[4], arg[5])
+    else
+        io.stderr:write("Usage : cyberland picture [board] [picture] [message] [replyTo]\n")
+    end
 elseif arg[1] and arg[1] == "catalog" then
     if #arg == 3 then
         read.showThread(arg[2], tonumber(arg[3]), "0")
@@ -34,6 +40,7 @@ elseif arg[1] and arg[1] == "OP" then
 else  
         io.stderr:write("Usage : cyberland read [board] [number of posts] [thread]\n")
         io.stderr:write(" or   : cyberland post [board] [message] [replyTo]\n")
+        io.stderr:write(" or   : cyberland picture [board] [picture] [message] [replyTo]\n")
         io.stderr:write(" or   : cyberland catalog [board] [number of posts]\n")
         io.stderr:write(" or   : cyberland op [board] [thread]\n")
 end
