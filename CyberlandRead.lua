@@ -203,11 +203,12 @@ read.showThreadTree = function(board, n, thread)
     end
 end
 
---Return the OP of a thread, we assume that the thread given in argument is a number
+--Return the OP of a thread, we assume that the thread given in argument is a number if there is an error return true as a second argument
 local function getOp(boardTab, thread)
-    local entry = fetchId(boardTab, thread)
+    local entry = fetchId(boardTab, thread), true
+    if not entry then return thread end
     if entry.replyTo == "0" or entry.replyTo == "null" then 
-        return thread
+        return thread, false
     end
     return getOp(boardTab, tonumber(entry.replyTo))
 end
@@ -215,7 +216,13 @@ end
 --display the original OP of a given thread
 read.printOp = function(board, thread)
     local boardTab = getBoard(board)
-    io.stdout:write(getOp(boardTab, tonumber(thread)),'\n')
+    local OP,error = getOp(boardTab, tonumber(thread))
+    if error then
+        io.stdout:write("The post ",tostring(OP)," reply to a thread not existing")
+    else
+        io.stdout:write(tostring(OP))
+    end
+    io.stdout:write('\n')
 end
 
 return read
