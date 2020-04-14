@@ -37,6 +37,13 @@ To reply "Cute" to the thread 1730 on the board /o/ do
 cyberland post o "Cute" 1730
 ```
 
+If you want to post a picture of the file cute.png to /i/ with the caption "How cute is it?" do
+```
+cyberland picture i cute.png "How cute is it?"
+```
+Note: You need to have viu (https://github.com/atanunq/viu) installed ans in your $PATH.
+You can also reply to a post with an image by adding the ID of the post you reply to after the message. The message can be an empty string if you only wish to post a picture.
+
 
 To know the OP from the thread 113 from the board /t/ do
 ```
