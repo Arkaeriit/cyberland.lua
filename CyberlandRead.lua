@@ -144,9 +144,11 @@ function threadTree(boardTab, lst)
     local replies = fetchReplies(boardTab, entry.id)
     if not replies or #replies == 0 then return end
     for i=1,#replies do
-        replies[i].prefix = entry.prefix.."      "
-        lst[#lst+1] = replies[i]
-        threadTree(boardTab, lst)
+        if replies[i].id ~= entry.id then
+            replies[i].prefix = entry.prefix.."      "
+            lst[#lst+1] = replies[i]
+            threadTree(boardTab, lst)
+        end
     end
 end
 
