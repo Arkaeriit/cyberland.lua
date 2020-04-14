@@ -63,7 +63,7 @@ end
 
 function getBoard(board)
     local n = getNboard(board)
-    if n < 1000 then n = 1000 end
+    -- if n < 1000 then n = 1000 end -- uncomment if the result are not sorted by decreasing ID
     local str = curl(board, nil, n)
     return sortTable(json.decode(str))
 end
@@ -110,6 +110,17 @@ read.showLast = function(board,n)
     end
 end
 
+--like showLast but doesn't download the entire board
+read.showLastLmt = function(board, n)
+    local b = reverseTable(sortTable(json.decode(curl(board, nil, n))))
+    for i=1,#b do
+        if displayMessage(b[i]) then
+            io.stdout:write("\n")
+        end
+    end
+end
+
+--depreciated
 read.showThread = function(board, n, thread)
     local b = getThreadBasic(board, thread)
     local max = n; if #b < n then max = #b end;
@@ -164,7 +175,8 @@ end
 
 -- show a thread with all replies
 read.showThreadTree = function(board, n, thread)
-    boardTab = getBoard(board)
+    local postToFetch = getNboard(board) - thread + 1
+    local boardTab = sortTable(json.decode(curl(board, nil, postToFetch)))
     local lst = {}
     lst[1] = fetchId(boardTab, thread)
     if tonumber(thread) == 0 then --We want a catalog

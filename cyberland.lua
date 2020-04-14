@@ -6,7 +6,7 @@ read.filter("~/.config/cyberland.lua/filter")
 
 if arg[1] and arg[1] == "read" then
     if #arg == 3 and tonumber(arg[3]) then
-        read.showLast(arg[2],tonumber(arg[3]))
+        read.showLastLmt(arg[2],tonumber(arg[3]))
     elseif #arg == 4 and tonumber(arg[3]) and tonumber(arg[4]) then
         read.showThreadTree(arg[2],tonumber(arg[3]),arg[4])
     else
