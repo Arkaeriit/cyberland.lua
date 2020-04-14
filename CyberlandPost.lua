@@ -12,7 +12,7 @@ end
 
 -- Generate a picture out of ANSII escpe code from a file
 -- assume that viu is installed and in your $PATH
-function genPicture(filename)
+local function genPicture(filename)
     local viu = io.popen("viu '"..filename.."' -w 86","r")
     return viu:read("a")
 end

@@ -19,7 +19,7 @@ read.filter = function(filename)
     f:close()
 end
 
-function curl(board, thread, num)
+local function curl(board, thread, num)
     if not thread then
         thread = '' 
     else
@@ -34,11 +34,11 @@ function curl(board, thread, num)
 end
 
 -- return an approximation of the number of posts in a board
-function getNboard(board)
+local function getNboard(board)
     return tonumber(json.decode(curl(board, nil, 1))[1].id)
 end
 
-function reverseTable(tab)
+local function reverseTable(tab)
     local ret = {}
     for i=1,#tab do
         ret[i] = tab[#tab -i +1]
@@ -47,7 +47,7 @@ function reverseTable(tab)
 end
 
 -- Bubble sort the tab by the ID of the field of tab
-function sortTable(tab)
+local function sortTable(tab)
     local tmp
     for i=1,#tab do
         for j=1,#tab-1 do
@@ -61,21 +61,21 @@ function sortTable(tab)
     return tab
 end
 
-function getBoard(board)
+local function getBoard(board)
     local n = getNboard(board)
     -- if n < 1000 then n = 1000 end -- uncomment if the result are not sorted by decreasing ID
     local str = curl(board, nil, n)
     return sortTable(json.decode(str))
 end
 
-function getThreadBasic(board, thread)
+local function getThreadBasic(board, thread)
     local n = getNboard(board)
     local str = curl(board, thread, n)
     return reverseTable(json.decode(str))
 end
 
 --Display a post in a pretty way. Return true if the post is displayed and false otherwise
-function displayMessage(entry)
+local function displayMessage(entry)
     for i=1,#filter do
         if entry.content == filter[i] then
             return false
@@ -136,7 +136,7 @@ read.showThread = function(board, n, thread)
 end
 
 -- return a list of all the replies to a post
-function fetchReplies(boardTab, thread)
+local function fetchReplies(boardTab, thread)
     local ret = {}
     for i=1,#boardTab do
         if tonumber(boardTab[i].replyTo) == tonumber(thread) then
@@ -147,7 +147,7 @@ function fetchReplies(boardTab, thread)
 end
 
 -- look at the last element of lst and append every replies to it in lst with a bigger prefix field
-function threadTree(boardTab, lst)
+local function threadTree(boardTab, lst)
     local entry = lst[#lst]
     if not entry.prefix then
         entry.prefix = ''
@@ -204,7 +204,7 @@ read.showThreadTree = function(board, n, thread)
 end
 
 --Return the OP of a thread, we assume that the thread given in argument is a number
-function getOp(boardTab, thread)
+local function getOp(boardTab, thread)
     local entry = fetchId(boardTab, thread)
     if entry.replyTo == "0" or entry.replyTo == "null" then 
         return thread
