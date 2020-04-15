@@ -27,7 +27,6 @@ local function curl(board, thread, num)
     end
     local command = 'curl "'..board..'?'..thread..'num='..tostring(math.tointeger(tonumber(num)))..'" --silent'
     local c = io.popen(command, "r")
-    print(command)
     local char = c:read(1)
     while char and char ~= '[' do char = c:read(1) end --we drop the 'kek' from the start
     local ret = '['..c:read("a")
