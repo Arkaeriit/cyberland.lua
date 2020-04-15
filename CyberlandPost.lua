@@ -11,6 +11,13 @@ local function send(board, message, replyTo)
     local c = io.popen(cmd,"r")
     if not c then return false end
     local ret = c:read("a")
+    if board:sub(1,25) == "https://cyberland.digital" then --cyberland.digital responses are a bit weird so I do this to try and interprete it
+        if ret:sub(1,1) == '<' then
+            return false
+        else
+            return true
+        end
+    end
     return ret == "0"
 end
 
@@ -40,6 +47,7 @@ post.picture = function(board, filename, message, replyTo)
             break
         end
         size = size - 1
+        os.execute('sleep 0.2') --to try and not overload servers
     end
     if not success then
         io.stdout:write("Error : message not send.\n")
