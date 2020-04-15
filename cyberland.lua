@@ -7,9 +7,9 @@ read.filter("~/.config/cyberland.lua/filter")
 function main()
     if arg[1] and arg[1] == "read" then
         if #arg == 3 and tonumber(arg[3]) then
-            read.showLastLmt(arg[2],tonumber(arg[3]))
+            read.showLastLmt(genURL(arg[2]),tonumber(arg[3]))
         elseif #arg == 4 and tonumber(arg[3]) and tonumber(arg[4]) then
-            read.showThreadTree(arg[2],tonumber(arg[3]),arg[4])
+            read.showThreadTree(genURL(arg[2]),tonumber(arg[3]),arg[4])
         else
             io.stderr:write("Usage : cyberland read [board] [number of posts] [thread]\n")
         end
@@ -27,14 +27,14 @@ function main()
         end
     elseif arg[1] and arg[1] == "catalog" then
         if #arg == 3 then
-            read.showThread(arg[2], tonumber(arg[3]), "0")
-            read.showThread(arg[2], tonumber(arg[3]), "null")
+            read.showThread(genURL(arg[2]), tonumber(arg[3]), "0")
+            read.showThread(genURL(arg[2]), tonumber(arg[3]), "null")
         else
             io.stderr:write("Usage : cyberland catalog [board] [number of posts]\n")
         end
     elseif arg[1] and arg[1] == "OP" then
         if #arg == 3 and tonumber(arg[3]) then
-            read.printOp(arg[2], arg[3])
+            read.printOp(genURL(arg[2]), arg[3])
         else
             io.stderr:write("Usage : cyberland op [board] [thread]\n")
         end

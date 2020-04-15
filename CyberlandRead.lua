@@ -25,7 +25,7 @@ local function curl(board, thread, num)
     else
         thread = 'thread='..thread..'&'
     end
-    local command = 'curl "https://cyberland2.club/'..board..'/?'..thread..'num='..num..'" --silent'
+    local command = 'curl "'..board..'?'..thread..'num='..num..'" --silent'
     local c = io.popen(command, "r")
     local char = c:read(1)
     while char and char ~= '[' do char = c:read(1) end --we drop the 'kek' from the start
