@@ -51,32 +51,16 @@ end
 --for exemple i became https://cyberland2.club/i/
 --dn became https://cyberland.digital/n/
 function genURL(board) 
-    if board == "i" then
-        return "https://cyberland2.club/i/"
-    elseif board == "n" then
-        return "https://cyberland2.club/n/"
-    elseif board == "o" then
-        return "https://cyberland2.club/o/"
-    elseif board == "t" then
-        return "https://cyberland2.club/t/"
-    elseif board == "dn" then
-        return "https://cyberland.digital/n/"
-    elseif board == "dc" then
-        return "https://cyberland.digital/c/"
-    elseif board == "do" then
-        return "https://cyberland.digital/o/"
-    elseif board == "di" then
-        return "https://cyberland.digital/i/"
-    elseif board == "dt" then
-        return "https://cyberland.digital/t/"
-    elseif board == "lt" then
-        return "http://landcyber.herokuapp.com/t/"
-    elseif board == "lo" then
-        return "http://landcyber.herokuapp.com/o/"
-    elseif board == "li" then
-        return "http://landcyber.herokuapp.com/i/"
-    elseif board == "ln" then
-        return "http://landcyber.herokuapp.com/n/"
+    if #board == 1 then
+        return "https://cyberland2.club/"..board.."/"
+    elseif #board == 2 then
+        if board:sub(1,1) == "d" then
+            return "https://cyberland.digital/"..board:sub(2,2).."/"
+        elseif board:sub(1,1) == "l" then
+            return "http://landcyber.herokuapp.com/"..board:sub(2,2).."/"
+        else
+            error("Error : unknown message board")
+        end
     else
         return board
     end
