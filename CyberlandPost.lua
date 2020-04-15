@@ -7,7 +7,7 @@ local function send(board, message, replyTo)
     if not replyTo then
         replyTo = 0
     end
-    local cmd = 'curl -d "content='..message..'&replyTo='..replyTo..'" -X POST "https://cyberland2.club/'..board..'/" --silent'
+    local cmd = 'curl -d "content='..message..'&replyTo='..replyTo..'" -X POST "'..board..'" --silent'
     local c = io.popen(cmd,"r")
     if not c then return false end
     local ret = c:read("a")
