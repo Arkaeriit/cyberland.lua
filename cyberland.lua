@@ -69,6 +69,14 @@ function genURL(board)
         return "https://cyberland.digital/i/"
     elseif board == "dt" then
         return "https://cyberland.digital/t/"
+    elseif board == "lt" then
+        return "http://landcyber.herokuapp.com/t/"
+    elseif board == "lo" then
+        return "http://landcyber.herokuapp.com/o/"
+    elseif board == "li" then
+        return "http://landcyber.herokuapp.com/i/"
+    elseif board == "ln" then
+        return "http://landcyber.herokuapp.com/n/"
     else
         return board
     end

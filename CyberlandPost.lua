@@ -17,8 +17,15 @@ local function send(board, message, replyTo)
         else
             return true
         end
+    elseif board:sub(1,31) == "http://landcyber.herokuapp.com/" then
+        if ret == "OK" then
+            return true
+        else
+            return false
+        end
+    else
+        return ret == "0"
     end
-    return ret == "0"
 end
 
 post.post = function(board, message, replyTo)
