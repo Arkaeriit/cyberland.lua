@@ -55,7 +55,7 @@ You should now have all the info you need to use this client.
 
 ### Board selection
 
-If you want to post to cyberland2.club simply put the letter of the board in the board field of your commands. Example: `i` for the image board. If you want yo post to cyberland.digital put a `d` besore the letter of the board. Example: `dc` for the client testing board. If you want to post to http://landcyber.herokuapp.com put a `l` before the letter of the board. Example: `lt` for the technology board.
+If you want to post to cyberland2.club simply put the letter of the board in the board field of your commands. Example: `i` for the image board. If you want yo post to cyberland.digital put a `d` besore the letter of the board. Example: `dc` for the client testing board. If you want to post to http://landcyber.herokuapp.com put a `l` before the letter of the board. Example: `lt` for the technology board. If you want to use an other text board you should put the full URL of the board. 
 
 ### Filters
 
