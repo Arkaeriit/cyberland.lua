@@ -25,8 +25,9 @@ local function curl(board, thread, num)
     else
         thread = 'thread='..thread..'&'
     end
-    local command = 'curl "'..board..'?'..thread..'num='..num..'" --silent'
+    local command = 'curl "'..board..'?'..thread..'num='..tostring(math.tointeger(tonumber(num)))..'" --silent'
     local c = io.popen(command, "r")
+    print(command)
     local char = c:read(1)
     while char and char ~= '[' do char = c:read(1) end --we drop the 'kek' from the start
     local ret = '['..c:read("a")
@@ -35,7 +36,7 @@ end
 
 -- return an approximation of the number of posts in a board
 local function getNboard(board)
-    return tonumber(json.decode(curl(board, nil, 1))[1].id)
+    return math.tointeger(tonumber(json.decode(curl(board, nil, 1))[1].id))
 end
 
 local function reverseTable(tab)
