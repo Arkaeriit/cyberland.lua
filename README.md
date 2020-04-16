@@ -51,6 +51,12 @@ cyberland OP t 113
 ```
 
 
+To read the full context of the thread 456 from the board /t/ starting from the OP and with all answers do
+```
+cyberland fullThread t 456
+```
+
+
 You should now have all the info you need to use this client.
 
 ### Board selection

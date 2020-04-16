@@ -36,14 +36,21 @@ function main()
         if #arg == 3 and tonumber(arg[3]) then
             read.printOp(genURL(arg[2]), arg[3])
         else
-            io.stderr:write("Usage : cyberland op [board] [thread]\n")
+            io.stderr:write("Usage : cyberland OP [board] [thread]\n")
+        end
+    elseif arg[1] and arg[1] == "fullThread" then
+        if #arg == 3 and tonumber(arg[3]) then
+            local OP = read.fullThread(genURL(arg[2]), arg[3])
+        else
+            io.stderr:write("Usage : cyberland fullThread [board] [thread]\n")
         end
     else  
             io.stderr:write("Usage : cyberland read [board] [number of posts] [thread]\n")
             io.stderr:write(" or   : cyberland post [board] [message] [replyTo]\n")
             io.stderr:write(" or   : cyberland picture [board] [picture] [message] [replyTo]\n")
             io.stderr:write(" or   : cyberland catalog [board] [number of posts]\n")
-            io.stderr:write(" or   : cyberland op [board] [thread]\n")
+            io.stderr:write(" or   : cyberland OP [board] [thread]\n")
+            io.stderr:write(" or   : cyberland fullThread [board] [thread]\n")
     end
 end
 

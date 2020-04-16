@@ -225,5 +225,16 @@ read.printOp = function(board, thread)
     io.stdout:write('\n')
 end
 
+read.fullThread = function(board, thread)
+    local boardTab = getBoard(board)
+    local OP,error = getOp(boardTab, tonumber(thread))
+    if error then
+        io.stdout:write("The post ",tostring(OP)," reply to a thread not existing\n")
+    else
+        local n = getNboard(board)
+        read.showThreadTree(board,n,OP)
+    end
+end
+
 return read
 
