@@ -12,11 +12,11 @@ cyberland read t 10
 ```
 
 
-To read the fist 20 posts from the thread 720 on the board /t/ do
+To read the fist 20 posts from the thread 720 on the board /x/ do
 ```
-cyberland read t 20 720
+cyberland read x 20 720
 ```
-Note: the replies to a thread are fetched recursively so you will see the replie to replies, the replies to replies to replies and so on.
+Note: the replies to a thread are fetched recursively so you will see the reply to replies, the replies to replies to replies and so on.
 
 
 To see a catalog of the 13 last OP on the board /o/ do
@@ -61,7 +61,7 @@ You should now have all the info you need to use this client.
 
 ### Board selection
 
-If you want to post to cyberland2.club simply put the letter of the board in the board field of your commands. Example: `i` for the image board. If you want yo post to cyberland.digital put a `d` besore the letter of the board. Example: `dc` for the client testing board. If you want to post to http://landcyber.herokuapp.com put a `l` before the letter of the board. Example: `lt` for the technology board. If you want to use an other text board you should put the full URL of the board. 
+By default, this program tries to connect to `cyberland.bobignou.red`. I left in the code URLs of old Cyberland servers but they are not open. If you want to use an other server, simply use the full URL of the board.
 
 ### Filters
 

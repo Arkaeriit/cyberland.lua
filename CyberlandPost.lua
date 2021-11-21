@@ -15,16 +15,23 @@ local function send(board, message, replyTo)
         if ret:sub(1,1) == '<' then
             return false
         else
+            print(ret)
             return true
         end
     elseif board:sub(1,31) == "http://landcyber.herokuapp.com/" then
         if ret == "OK" then
             return true
         else
+            print(ret)
             return false
         end
     else
-        return ret == "0"
+        if ret == "OK" then
+            return true
+        else
+            print(ret)
+            return false
+        end
     end
 end
 
@@ -54,7 +61,7 @@ post.picture = function(board, filename, message, replyTo)
             break
         end
         size = size - 1
-        os.execute('sleep 0.2') --to try and not overload servers
+        os.execute('sleep 1.2') --to try and not overload servers
     end
     if not success then
         io.stdout:write("Error : message not send.\n")

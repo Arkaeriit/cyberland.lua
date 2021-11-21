@@ -59,9 +59,11 @@ end
 --dn became https://cyberland.digital/n/
 function genURL(board) 
     if #board == 1 then
-        return "https://cyberland2.club/"..board.."/"
+        return "https://cyberland.bobignou.red/"..board.."/"
     elseif #board == 2 then
-        if board:sub(1,1) == "d" then
+        if board:sub(1,1) == "2" then
+            return "https://cyberland2.club/"..board:sub(2,2).."/"
+        elseif board:sub(1,1) == "d" then
             return "https://cyberland.digital/"..board:sub(2,2).."/"
         elseif board:sub(1,1) == "l" then
             return "http://landcyber.herokuapp.com/"..board:sub(2,2).."/"
