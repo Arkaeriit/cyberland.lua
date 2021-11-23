@@ -86,7 +86,9 @@ local function displayMessage(entry)
     end
     local str = entry.prefix.."ID : "..entry.id.."\n"
     if entry.time then
-        str = str..entry.prefix.."Time : "..entry.time..'\n'
+        date_ts = os.date("*t", entry.time)
+        local time_pretty = string.format("%02d-%02d-%02dT%02d:%02d:%02d", date_ts.year, date_ts.month, date_ts.day, date_ts.hour, date_ts.min, date_ts.sec)
+        str = str..entry.prefix.."Time : "..time_pretty..'\n'
     end
     if tonumber(entry.replyTo) and tonumber(entry.replyTo) > 1 then
         str = str..entry.prefix.."reply to : "..entry.replyTo.."\n"
