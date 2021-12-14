@@ -1,7 +1,8 @@
 #!/usr/local/bin/lua
 
-local read = require('CyberlandRead')
-local post = require('CyberlandPost')
+local read   = require('CyberlandRead')
+local post   = require('CyberlandPost')
+local status = require('CyberlandStatus')
 read.filter("~/.config/cyberland.lua/filter")
 
 function main()
@@ -44,6 +45,12 @@ function main()
         else
             io.stderr:write("Usage : cyberland fullThread [board] [thread]\n")
         end
+    elseif arg[1] and arg[1] == "new_posts" then
+        local server_url = "cyberland.bobignou.red"
+        if arg[2] then
+            server_url = arg[2]
+        end
+        status.updated_posts(server_url)
     else  
             io.stderr:write("Usage : cyberland read [board] [number of posts] [thread]\n")
             io.stderr:write(" or   : cyberland post [board] [message] [replyTo]\n")
@@ -51,6 +58,7 @@ function main()
             io.stderr:write(" or   : cyberland catalog [board] [number of posts]\n")
             io.stderr:write(" or   : cyberland OP [board] [thread]\n")
             io.stderr:write(" or   : cyberland fullThread [board] [thread]\n")
+            io.stderr:write(" or   : cyberland new_posts <server>\n")
     end
 end
 

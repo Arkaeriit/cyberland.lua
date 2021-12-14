@@ -107,6 +107,8 @@ end
 --This function manages the local cache for the number of post in a server and
 --prints nice results to inform if new post have been posted since the last time
 --this function have been run
+--Note: the argument server should be the server's URL without http:// or https://
+--in front of it.
 status.updated_posts = function(server)
     --Reading remote data
     local cmd = 'curl --silent '..server..'/boards'
@@ -122,5 +124,5 @@ status.updated_posts = function(server)
     db_write(server_fmt, server)
 end
 
-status.updated_posts("cyberland.bobignou.red")
+return status
 

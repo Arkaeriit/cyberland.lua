@@ -56,6 +56,11 @@ To read the full context of the thread 456 from the board /t/ starting from the 
 cyberland fullThread t 456
 ```
 
+If you want to quickly see if there is a new post on the server `cyberland.bobignou.red`, you can do
+```
+cyberland new_posts cyberland.bobignou.red
+```
+Note: this command requires that you give the server's URL without `http://` or `https://` in front of the URL.
 
 You should now have all the info you need to use this client.
 
