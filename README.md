@@ -2,7 +2,7 @@
 
 My cyberland.club client.
 
-![Alt text](https://i.imgur.com/aoqvUbF.png "Reading a thread")
+![Reading a thread](https://i.imgur.com/aoqvUbF.png)
 
 ## User manual
 
